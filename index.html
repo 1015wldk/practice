@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>할 일 관리</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>할 일 관리</h1>
+      <p class="summary" id="summary" aria-live="polite"></p>
+    </header>
+
+    <form class="new-todo" id="new-todo-form" autocomplete="off">
+      <label for="new-todo-input" class="visually-hidden">새 할 일</label>
+      <input id="new-todo-input" type="text" placeholder="할 일을 입력하고 Enter" maxlength="200" required>
+      <button type="submit">추가</button>
+    </form>
+
+    <nav class="filters" aria-label="필터">
+      <button type="button" data-filter="all" class="active">전체</button>
+      <button type="button" data-filter="active">진행 중</button>
+      <button type="button" data-filter="done">완료</button>
+    </nav>
+
+    <ul class="todo-list" id="todo-list"></ul>
+    <p class="empty" id="empty-message" hidden>할 일이 없습니다.</p>
+
+    <footer class="app-footer">
+      <button type="button" id="toggle-all">모두 완료</button>
+      <button type="button" id="clear-done">완료 항목 삭제</button>
+    </footer>
+
+    <p class="hint">항목을 더블클릭하면 수정할 수 있어요.</p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
