@@ -173,14 +173,14 @@
       const entry = findEntry(parts[1]);
       if (!entry) { location.replace('#list'); return; }
       openEditor(entry);
-    } else if (view === 'guide' || view === 'help') {
+    } else if (view === 'guide' || view === 'help' || view === 'chat' || view === 'settings') {
       // 정적 내용
     } else {
       view = 'list';
       renderList();
     }
 
-    ['list', 'edit', 'guide', 'help'].forEach(function (v) { $('view-' + v).hidden = v !== view; });
+    ['list', 'edit', 'guide', 'help', 'chat', 'settings'].forEach(function (v) { $('view-' + v).hidden = v !== view; });
     document.querySelectorAll('[data-nav]').forEach(function (a) {
       a.classList.toggle('active', a.dataset.nav === view || (view === 'edit' && a.dataset.nav === 'list'));
     });

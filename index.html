@@ -15,6 +15,8 @@
         <a href="#list" data-nav="list">일지 목록</a>
         <a href="#guide" data-nav="guide">작성 요령</a>
         <a href="#help" data-nav="help">사용 설명서</a>
+        <a href="#chat" data-nav="chat">질문하기</a>
+        <a href="#settings" data-nav="settings">설정</a>
       </nav>
     </div>
   </header>
@@ -229,6 +231,7 @@
         <a href="#help" data-jump="help-check">자가 점검</a>
         <a href="#help" data-jump="help-submit">제출하기</a>
         <a href="#help" data-jump="help-data">저장과 백업</a>
+        <a href="#help" data-jump="help-chat">질문하기(챗봇)</a>
         <a href="#help" data-jump="help-faq">자주 묻는 질문</a>
       </nav>
 
@@ -286,7 +289,20 @@
         <li>학교·도서관 같은 <b>공용 컴퓨터</b>에서는 제출 후 일지를 삭제하세요.</li>
       </ul>
 
-      <h2 id="help-faq">6. 자주 묻는 질문</h2>
+      <h2 id="help-chat">6. 질문하기 (챗봇)</h2>
+      <p>일지를 쓰다 막힐 때 <a href="#chat">질문하기</a> 탭에서 Claude(AI)에게 물어볼 수 있어요. 작성 원칙을 바탕으로 답하고, <b>일지를 대신 써 주지는 않습니다.</b> 쓴 글을 붙여 넣으면 원칙에 비추어 고칠 점을 짚어 줍니다.</p>
+      <ol class="help-steps">
+        <li><a href="#settings">설정</a> 탭에서 <b>API 키</b>를 입력하고 <b>키 저장</b>을 누릅니다. 키는 Claude Console(platform.claude.com)에서 만듭니다.</li>
+        <li>같은 화면의 <b>‘최신 모델 불러오기’</b>를 누르면 내 키로 쓸 수 있는 최신 Claude 모델 목록이 나옵니다. 사용할 모델을 고르세요. 잘 모르겠다면 sonnet이 들어간 모델을 권합니다.</li>
+        <li><b>질문하기</b> 탭에서 궁금한 점을 쓰고 <b>보내기</b>를 누릅니다. 아래 예시 질문을 눌러도 됩니다. 컴퓨터에서는 Enter로 보내고 Shift+Enter로 줄을 바꿉니다.</li>
+      </ol>
+      <ul>
+        <li>키는 <b>이 기기의 브라우저에만</b> 저장되며 백업 파일에는 들어가지 않습니다. 공용 컴퓨터에서는 쓰고 나서 설정에서 <b>키 삭제</b>를 누르세요.</li>
+        <li>질문 내용은 답변을 만들기 위해 Claude(Anthropic) 서버로 전송됩니다. <b>클라이언트 실명, 전화번호, 주소는 쓰지 마세요.</b> 개인정보처럼 보이는 표현이 있으면 보내기 전에 알려 줍니다. 쓰고 있는 일지는 전송되지 않고, 대화는 화면을 닫으면 사라집니다.</li>
+        <li>AI 답변은 틀릴 수 있습니다. 학교·기관의 기준은 담당 교수님이나 슈퍼바이저께 확인하세요.</li>
+      </ul>
+
+      <h2 id="help-faq">7. 자주 묻는 질문</h2>
       <dl class="faq">
         <dt>일지를 다 썼는데 저장 버튼이 없어요.</dt>
         <dd>입력할 때마다 자동 저장됩니다. 화면 위쪽에 저장 상태가 표시됩니다.</dd>
@@ -295,8 +311,90 @@
         <dt>점검에서 경고가 떴는데 제 글은 문제없는 것 같아요.</dt>
         <dd>자동 점검은 참고용이라 잘못 짚을 수 있습니다. 직접 읽어 보고 괜찮으면 체크하고 넘어가세요.</dd>
         <dt>AI가 일지를 대신 써 주나요?</dt>
-        <dd>아니요. 대신 쓴 일지는 슈퍼비전의 의미가 사라지기 때문에, 이 앱은 틀과 점검만 제공합니다.</dd>
+        <dd>아니요. 대신 쓴 일지는 슈퍼비전의 의미가 사라지기 때문에, 이 앱은 틀과 점검만 제공합니다. 질문하기 챗봇도 일지를 대신 쓰지 않고 쓰는 방법만 안내하도록 되어 있습니다.</dd>
+        <dt>질문하기에서 “API 키가 필요해요”라고 나와요.</dt>
+        <dd>설정 탭에서 API 키를 저장해야 쓸 수 있습니다. 키는 기기마다 따로 입력해야 합니다.</dd>
+        <dt>챗봇이 오류를 보여 줘요.</dt>
+        <dd>메시지의 안내를 먼저 보세요. “키가 올바르지 않아요”는 설정에서 키를 다시 입력하고, “모델을 찾을 수 없어요”는 ‘최신 모델 불러오기’를 눌러 모델을 다시 고르면 대부분 해결됩니다.</dd>
       </dl>
+    </section>
+
+    <!-- ===== 질문하기 (챗봇) ===== -->
+    <section id="view-chat" class="view chat-wrap" hidden>
+      <div class="chat-head">
+        <h1>실습일지 질문하기</h1>
+        <a href="#settings" class="muted small" id="chat-model-label"></a>
+      </div>
+      <p class="muted">실습일지를 어떻게 써야 할지 궁금한 점을 물어보세요. 일지를 대신 써 주지는 않고, 작성 원칙에 맞게 직접 쓸 수 있도록 도와줍니다.</p>
+
+      <div class="notice" id="chat-banner" hidden>
+        질문하려면 API 키가 필요해요. <a href="#settings">설정</a>에서 키를 입력해 주세요.
+      </div>
+
+      <div class="chat-log" id="chat-log" role="log" aria-live="polite" aria-label="대화"></div>
+      <div class="chips" id="chat-suggest" aria-label="질문 예시"></div>
+
+      <form class="chat-form" id="chat-form" autocomplete="off">
+        <label for="chat-input" class="sr-only">질문 입력</label>
+        <textarea id="chat-input" rows="2" maxlength="2000" placeholder="예) 사실과 해석은 어떻게 구분해서 쓰나요?"></textarea>
+        <button type="submit" class="btn primary" id="btn-chat-send">보내기</button>
+        <button type="button" class="btn" id="btn-chat-stop" hidden>멈추기</button>
+      </form>
+      <p class="small warn-text" id="chat-warn" hidden></p>
+
+      <div class="chat-foot">
+        <button type="button" class="btn small ghost" id="btn-chat-clear">대화 지우기</button>
+        <p class="muted small">AI 답변은 틀릴 수 있어요. 학교·기관의 기준은 담당 교수님이나 슈퍼바이저께 확인하세요. 입력한 질문은 Claude(Anthropic) 서버로 전송되니 <b>클라이언트 실명·연락처 같은 개인정보는 쓰지 마세요.</b> 대화는 이 화면을 닫으면 사라지고, 쓰고 있는 일지는 전송되지 않습니다.</p>
+      </div>
+    </section>
+
+    <!-- ===== 설정 ===== -->
+    <section id="view-settings" class="view settings" hidden>
+      <h1>설정</h1>
+
+      <div class="card">
+        <h2>Claude API 키</h2>
+        <p class="muted small">키는 Claude Console(platform.claude.com → API keys)에서 만들 수 있어요. 키는 <b>이 브라우저에만</b> 저장되고, 질문을 보낼 때 Anthropic 서버(api.anthropic.com)로만 전송됩니다. 일지 내용이나 백업 파일에는 포함되지 않아요.</p>
+        <label class="field">
+          <span class="field-label">API 키</span>
+          <span class="row nowrap">
+            <input type="password" id="set-key" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="sk-ant-…">
+            <button type="button" class="btn small" id="set-key-toggle" aria-pressed="false">보기</button>
+          </span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="set-persist" checked>
+          <span>이 기기에 키 저장 <span class="muted small">(끄면 이 탭을 닫을 때 키가 지워져요)</span></span>
+        </label>
+        <div class="row">
+          <button type="button" class="btn primary" id="btn-key-save">키 저장</button>
+          <button type="button" class="btn danger ghost" id="btn-key-clear">키 삭제</button>
+        </div>
+        <p class="small status" id="set-key-status" aria-live="polite"></p>
+      </div>
+
+      <div class="card">
+        <h2>사용할 모델</h2>
+        <p class="muted small">챗봇이 사용할 Claude 모델을 고릅니다. <b>‘최신 모델 불러오기’</b>를 누르면 내 키로 쓸 수 있는 최신 모델 목록을 Anthropic에서 가져와 목록을 갱신해요.</p>
+        <label class="field">
+          <span class="field-label">모델</span>
+          <select id="set-model"></select>
+        </label>
+        <div class="row">
+          <button type="button" class="btn" id="btn-models-load">최신 모델 불러오기</button>
+        </div>
+        <p class="small status" id="set-models-status" aria-live="polite"></p>
+        <p class="muted small">고르는 요령: 이름에 haiku가 들어간 모델은 보통 빠르고 저렴하고, sonnet은 품질과 비용의 균형이 좋고, opus는 가장 정교하지만 비용이 더 들어요. 학생 질문처럼 짧은 대화에는 sonnet이나 haiku로 충분해요.</p>
+      </div>
+
+      <div class="card">
+        <h2>알아 두세요</h2>
+        <ul class="small">
+          <li>키 사용료는 키 주인의 Anthropic 계정에 청구돼요. 다른 사람과 공유하는 기기에서는 쓰고 나서 <b>키 삭제</b>를 눌러 주세요.</li>
+          <li>이 앱은 서버가 없어서, 키는 입력한 기기의 브라우저에만 있어요. 학생마다 자기 기기에서 따로 입력해야 챗봇을 쓸 수 있어요.</li>
+          <li>챗봇은 일지를 대신 쓰지 않도록 설정되어 있지만, AI라서 완벽하게 지켜지지는 않을 수 있어요.</li>
+        </ul>
+      </div>
     </section>
   </main>
 
@@ -305,6 +403,8 @@
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
   <script src="js/checks.js"></script>
+  <script src="js/chat.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/chat-ui.js"></script>
 </body>
 </html>
