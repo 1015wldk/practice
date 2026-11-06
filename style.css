@@ -365,6 +365,24 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .compare-col.before h3 { color: var(--warn); }
 .compare-col.after h3 { color: var(--ok); }
 
+/* ---------- 사용 설명서 ---------- */
+
+.help-toc { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 8px; }
+.help-toc a {
+  padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--surface); color: var(--text); text-decoration: none; font-size: 0.9rem;
+}
+.help-toc a:hover { border-color: var(--accent); color: var(--accent); }
+.guide h2[id] { scroll-margin-top: 80px; }
+.help-steps li { margin-bottom: 8px; }
+.help-table { width: 100%; border-collapse: collapse; margin: 8px 0 10px; font-size: 0.95rem; }
+.help-table th, .help-table td { text-align: left; vertical-align: top; padding: 9px 10px; border-bottom: 1px solid var(--border); }
+.help-table th { background: var(--surface-2); font-weight: 600; }
+.help-table td:first-child { white-space: nowrap; font-weight: 600; }
+.help-note { background: var(--warn-soft); border-radius: 10px; padding: 10px 14px; }
+.faq dt { font-weight: 600; margin-top: 14px; }
+.faq dd { margin: 4px 0 0; color: var(--muted); }
+
 /* ---------- 알림 ---------- */
 
 .toast {
@@ -405,6 +423,9 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
   .compare { grid-template-columns: 1fr; }
   .brand { font-size: 0.98rem; }
   .tabs a { padding: 6px 10px; font-size: 0.9rem; }
+  .tabs { gap: 2px; }
+  .tabs a { padding: 6px 8px; font-size: 0.85rem; }
+  .help-table td:first-child { white-space: normal; min-width: 5.5em; }
 }
 
 /* ---------- 인쇄 ---------- */

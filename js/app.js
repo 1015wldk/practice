@@ -173,14 +173,14 @@
       const entry = findEntry(parts[1]);
       if (!entry) { location.replace('#list'); return; }
       openEditor(entry);
-    } else if (view === 'guide') {
+    } else if (view === 'guide' || view === 'help') {
       // 정적 내용
     } else {
       view = 'list';
       renderList();
     }
 
-    ['list', 'edit', 'guide'].forEach(function (v) { $('view-' + v).hidden = v !== view; });
+    ['list', 'edit', 'guide', 'help'].forEach(function (v) { $('view-' + v).hidden = v !== view; });
     document.querySelectorAll('[data-nav]').forEach(function (a) {
       a.classList.toggle('active', a.dataset.nav === view || (view === 'edit' && a.dataset.nav === 'list'));
     });
@@ -554,6 +554,15 @@
     } else {
       renderList();
     }
+  });
+
+  // 사용 설명서 목차: 해시 라우팅을 건드리지 않고 해당 제목으로 스크롤
+  document.querySelectorAll('[data-jump]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = $(a.dataset.jump);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   });
 
   window.addEventListener('hashchange', route);
